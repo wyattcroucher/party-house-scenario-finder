@@ -197,7 +197,7 @@ parser.add_argument("-q", "--quiet",
                     action="store_false", dest="verbose", default=True,
                     help="don't print scenarios, just print the final count")
 parser.add_argument("-i", "--include", dest="include", type=str, default = "",
-                    help="guests that the scenario must include")
+                    help="guests that the scenario must include. Multiple guests must be in quotes and comma separated. Names must be all caps, spelling must match in-game spelling. example: --include \"PHOTOGRAPHR, STYLIST, CHEERLEADR\"")
 parser.add_argument("-e", "--exclude", dest="exclude", type=str, default = "",
                     help="guests that the scenario must exclude")
 
