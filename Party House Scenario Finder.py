@@ -200,8 +200,21 @@ parser.add_argument("-i", "--include", dest="include", type=str, default = "",
                     help="guests that the scenario must include. Multiple guests must be in quotes and comma separated. Names must be all caps, spelling must match in-game spelling. example: --include \"PHOTOGRAPHR, STYLIST, CHEERLEADR\"")
 parser.add_argument("-e", "--exclude", dest="exclude", type=str, default = "",
                     help="guests that the scenario must exclude")
+parser.add_argument("-s", "--seed", dest="seed", type=int, default = -1,
+                    help="show specific seed. don't use other arguments with this")
+parser.add_argument("-m", "--min", dest="min", type=int, default = 0,
+                    help="seed to start searching from")
+parser.add_argument("-x", "--max", dest="max", type=int, default = 999999,
+                    help="seed to stop searching at")
 
 args = parser.parse_args()
+if (args.seed >= 0 and args.seed < 1000000):
+    min = args.seed
+    max = args.seed + 1
+else:
+    min = args.min
+    max = args.max + 1
+    
 if (args.include):
     for word in args.include.split(','):
         word = word.strip()
@@ -214,8 +227,10 @@ if (args.exclude):
         for i, name in enumerate(character_types):
             if name == word:
                 excludes.append(i)
+includes = sorted(includes)
+excludes = sorted(excludes)
 
-for i in range(1000000):
+for i in range(min, max):
     scenario_result = get_scenario_result(i)
     skip = False
     for include in includes:
