@@ -192,6 +192,26 @@ def get_scenario_result(seed):
     #return deck_names
     return deck
 
+def fix_spelling(word):
+    word = word.strip().upper()
+    if "CHEERLEAD" in word:
+        return "CHEERLEADR"
+    elif "PHOTOGRAPH" in word:
+        return "PHOTOGRAPHR"
+    elif "GRILL" in word:
+        return "GRILLMASTR"
+    elif "POPULAR" in word:
+        return "MR POPULAR"
+    elif "PRIVATE" in word:
+        return "PRIVATE I."
+    elif "TICKET" in word:
+        return "TICKET TKR"
+    elif "ROCK" in word:
+        return "ROCK STAR"
+    elif "HIPP" in word:
+        return "HIPPY"
+    return word
+
 # main method
 parser = ArgumentParser()
 parser.add_argument("-q", "--quiet",
@@ -218,7 +238,7 @@ else:
     
 if args.include:
     for word in args.include.split(','):
-        word = word.strip()
+        word = fix_spelling(word)
         found = False
         for i, name in enumerate(character_types):
             if name == word:
@@ -231,7 +251,7 @@ if args.include:
 if args.exclude:
     for word in args.exclude.split(','):
         found = False
-        word = word.strip()
+        word = fix_spelling(word)
         for i, name in enumerate(character_types):
             if name == word:
                 excludes.append(i)
