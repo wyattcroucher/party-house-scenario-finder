@@ -1,6 +1,6 @@
 # Party House Scenario Finder
 # All code except the main method is taken from https://github.com/phil-macrocheira/bean-bot
-# Example Usage: python "Party House Scenario Finder.py" --exclude "HIPPY, CUTE DOG, SECURITY, WRESTLER, WATCH DOG, SPY, DRIVER, PRIVATE I., ATHLETE, PHOTOGRAPHR, TICKET TKR, AUCTIONEER, COUNSELOR, STYLIST, BARTENDER, WRITER, CLIMBER, CUPID, MAGICIAN, GHOST, UNICORN"
+# Example Usage: python "Party House Scenario Finder.py" --include "MONKEY, TICKET TKR, CHEERLEADR, ROCK STAR, WEREWOLF, GANGSTER, GAMBLER, DANCER, AUCTIONEER, CELEBRITY, BARTENDER"
 
 import json
 import random
@@ -8,6 +8,7 @@ import math
 import re 
 import os
 import string
+import sys
 from argparse import ArgumentParser
 
 count = 0
@@ -215,18 +216,30 @@ else:
     min = args.min
     max = args.max + 1
     
-if (args.include):
+if args.include:
     for word in args.include.split(','):
         word = word.strip()
+        found = False
         for i, name in enumerate(character_types):
             if name == word:
                 includes.append(i)
-if (args.exclude):
+                found = True
+                break
+        if not found:
+            print("Aborting. " + word + " isn't a valid guest.")
+            sys.exit()
+if args.exclude:
     for word in args.exclude.split(','):
+        found = False
         word = word.strip()
         for i, name in enumerate(character_types):
             if name == word:
                 excludes.append(i)
+                found = True
+                break
+        if not found:
+            print("Aborting. " + word + "isn't a valid guest.")
+            sys.exit()
 includes = sorted(includes)
 excludes = sorted(excludes)
 
