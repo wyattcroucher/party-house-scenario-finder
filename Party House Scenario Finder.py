@@ -31,7 +31,7 @@ character_types = [
     "MR POPULAR",
     "CELEBRITY", 
     "COMEDIAN",
-    "PHOTOGRAPHR", 
+    "PHOTOGRPHR", 
     "CATERER", 
     "TICKET TKR",
     "AUCTIONEER",
@@ -88,7 +88,7 @@ pop_costs = {
     "MR POPULAR": 5,
     "CELEBRITY": 11,
     "COMEDIAN": 5,
-    "PHOTOGRAPHR": 5,
+    "PHOTOGRPHR": 5,
     "CATERER": 5,
     "TICKET TKR": 4,
     "AUCTIONEER": 9,
@@ -196,8 +196,8 @@ def fix_spelling(word):
     word = word.strip().upper()
     if "CHEERLEAD" in word:
         return "CHEERLEADR"
-    elif "PHOTOGRAPH" in word:
-        return "PHOTOGRAPHR"
+    elif "PHOTO" in word:
+        return "PHOTOGRPHR"
     elif "GRILL" in word:
         return "GRILLMASTR"
     elif "POPULAR" in word:
@@ -218,7 +218,7 @@ parser.add_argument("-q", "--quiet",
                     action="store_false", dest="verbose", default=True,
                     help="don't print scenarios, just print the final count")
 parser.add_argument("-i", "--include", dest="include", type=str, default = "",
-                    help="guests that the scenario must include. Multiple guests must be in quotes and comma separated. Names must be all caps, spelling must match in-game spelling. example: --include \"PHOTOGRAPHR, STYLIST, CHEERLEADR\"")
+                    help="guests that the scenario must include. multiple guests must be in quotes and comma separated. example: --include \"PHOTOGRPHR, STYLIST, CHEERLEADR\"")
 parser.add_argument("-e", "--exclude", dest="exclude", type=str, default = "",
                     help="guests that the scenario must exclude")
 parser.add_argument("-s", "--seed", dest="seed", type=int, default = -1,
