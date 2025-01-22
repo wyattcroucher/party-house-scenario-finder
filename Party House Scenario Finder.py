@@ -210,6 +210,8 @@ def fix_spelling(word):
         return "ROCK STAR"
     elif "HIPP" in word:
         return "HIPPY"
+    elif "COUNSEL" in word:
+        return "COUNSELOR"
     return word
 
 # main method
